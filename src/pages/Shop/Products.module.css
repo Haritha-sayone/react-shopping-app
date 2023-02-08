@@ -1,0 +1,39 @@
+/* .products {
+    margin-bottom: 500px;
+} */
+
+.products li {
+    color: orangered;
+}
+
+.filters {
+    margin-left: 10px;
+}
+
+.category h6,
+.brand h6,
+.filters button {
+    color: grey;
+}
+
+.category h6 {
+    margin-top: 60px;
+}
+
+.filters button{
+    display: block;
+    text-align: left;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    border-left: 3px solid grey;
+    color:grey;
+    margin: 5px 15px;
+    /* margin-bottom:2px; */
+}
+
+.filters button:hover,
+.filters button:focus {
+    border-left: 3px solid orangered;
+}
+
