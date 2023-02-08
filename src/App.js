@@ -5,8 +5,8 @@ import Footer from './components/Footer/Footer';
 import Dashboard from './components/admin/Dashboard';
 import AddProducts from './components/admin/AddProducts';
 import ViewProducts from './components/admin/ViewProducts';
+import EditProduct from './components/admin/EditProduct';
 import Orders from './components/admin/Orders';
-
 import Home from './pages/Home/Home';
 import Products from './pages/Shop/Products';
 import Cart from './components/cart/Cart';
@@ -25,6 +25,7 @@ function App() {
         <Route path='/admin' element={<Dashboard />} />
         <Route path='/products/add' element={<AddProducts />} />
         <Route path='/products/list' element={<ViewProducts />} />
+        <Route path='/product/:id' element={<EditProduct />} />
         <Route path='/orders' element={<Orders />} />
       </Routes>
       <Footer />

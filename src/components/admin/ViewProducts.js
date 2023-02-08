@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import AppleLapImg from '../../assets/apple-laptop.jpeg';
 import DellLapImg from '../../assets/dell-laptop.jpeg';
 import HpLapImg from '../../assets/hp-laptop.jpeg';
@@ -54,9 +55,13 @@ const ViewProducts = () => {
                                     <td>{product.category}</td>
                                     <td>
                                         {/* <button className='btn btn-success' style={{ marginRight: "5px" }}>Edit</button> */}
-                                        <i className="fa fa-pencil" aria-hidden="true" style={{ marginRight: "10px" }}></i>
+                                        <Link to={`/product/${product.id}`}>
+                                            <i className="fa fa-pencil" aria-hidden="true" style={{ marginRight: "10px", color: "#212529" }}></i>
+                                        </Link>
                                         {/* <button className='btn btn-danger'>Delete</button> */}
-                                        <i className="fa fa-trash" aria-hidden="true"></i>
+                                        <Link>
+                                            <i className="fa fa-trash" aria-hidden="true" style={{ color: "#212529" }}></i>
+                                        </Link>
                                     </td>
                                 </tr>
                             )

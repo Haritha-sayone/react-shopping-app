@@ -1,13 +1,11 @@
-import React from 'react'
-
-const AddProduct = () => {
+const EditProduct = () => {
     return (
         <div className='row mx-5 my-5'>
-            <h2 className='text-center mt-5'>Add Products</h2>
+            <h2 className="text-center mt-5">Edit Product</h2>
             <div className='col-4'></div>
             <div className='col-4'>
                 <div className="alert alert-danger" role="alert">
-                    This product already exists.
+                    Failed to edit product.
                 </div>
                 <form autoComplete="off">
                     <div className="mb-3">
@@ -24,19 +22,12 @@ const AddProduct = () => {
                         <input
                             type="number"
                             className="form-control"
-                            placeholder='0₹'
+                            placeholder="₹0"
                             required
                         />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="category" className="form-label">Category</label>
-                        {/* <input
-                            type="text"
-                            className="form-control"
-                            placeholder='Category'
-                            required
-                            value=""
-                        /> */}
                         <select className="form-select" aria-label="Default select example">
                             <option value="default">Choose Category</option>
                             <option value="laptops">Laptops</option>
@@ -54,12 +45,12 @@ const AddProduct = () => {
                             required
                         />
                     </div>
-                    <button type="submit" className="btn btn-success mb-5">ADD</button>
+                    <button type="submit" className="btn btn-success mb-5">Update</button>
                 </form>
             </div>
             <div className='col-4'></div>
         </div>
     )
-}
+};
 
-export default AddProduct
+export default EditProduct;
