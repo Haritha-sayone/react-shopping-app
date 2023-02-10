@@ -3,7 +3,7 @@ import React from 'react'
 const AddProduct = () => {
     return (
         <div className='row mx-5 my-5'>
-            <h2 className='text-center mt-5'>Add Products</h2>
+            <h4 className='text-center mt-5'>Add Products</h4>
             <div className='col-4'></div>
             <div className='col-4'>
                 <div className="alert alert-danger" role="alert">
@@ -15,9 +15,12 @@ const AddProduct = () => {
                         <input
                             type="text"
                             className="form-control"
-                            placeholder="Title"
                             required
                         />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="description" className="form-label">Description</label>
+                        <textarea className="form-control" id="description" rows="3"></textarea>
                     </div>
                     <div className="mb-3">
                         <label htmlFor="price" className="form-label">Price</label>

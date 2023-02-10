@@ -7,23 +7,24 @@ import CamImg from '../../assets/cam.jpg';
 import MensShirt from '../../assets/mens-shirt.jpeg';
 import LadysShirt from '../../assets/ladys-shirt.jpeg';
 import CottonShirt from '../../assets/cotton-shirt.jpg';
+import { Link } from 'react-router-dom';
 
 const Products = () => {
     const products = [
-        { id: "1", title: "Apple MacBook", price: "100000", category: "laptop", brand: "apple", imgUrl: AppleLapImg },
-        { id: "2", title: "Dell Laptop", price: "30000", category: "laptop", brand: "dell", imgUrl: DellLapImg },
-        { id: "3", title: "Hp Laptop", price: "50000", category: "laptop", brand: "hp", imgUrl: HpLapImg },
-        { id: "4", title: "Lenovo Laptop", price: "45000", category: "laptop", brand: "lenovo", imgUrl: LenovoLapImg },
+        { id: "1", title: "Apple MacBook", desc: "Apple MacBook is an .........", price: "100000", category: "laptop", brand: "apple", imgUrl: AppleLapImg },
+        { id: "2", title: "Dell Laptop", desc: "Dell Laptop is an .........", price: "30000", category: "laptop", brand: "dell", imgUrl: DellLapImg },
+        { id: "3", title: "Hp Laptop", desc: "Hp Laptop is an .........", price: "50000", category: "laptop", brand: "hp", imgUrl: HpLapImg },
+        { id: "4", title: "Lenovo Laptop", desc: "Lenovo Laptop is an .........", price: "45000", category: "laptop", brand: "lenovo", imgUrl: LenovoLapImg },
 
-        { id: "5", title: "Camera", price: "10000", category: "camera", brand: "canva", imgUrl: CamImg },
-        { id: "6", title: "Shirt", price: "30000", category: "men", brand: "ajinora", imgUrl: MensShirt },
-        { id: "7", title: "Ladys' Top", price: "50000", category: "women", brand: "adidas", imgUrl: LadysShirt },
-        { id: "8", title: "Cotton Shirt", price: "45000", category: "men", brand: "meesho", imgUrl: CottonShirt },
+        { id: "5", title: "Camera", desc: "Camera is an .........", price: "10000", category: "camera", brand: "canva", imgUrl: CamImg },
+        { id: "6", title: "Shirt", desc: "Shirt is an .........", price: "30000", category: "men", brand: "ajinora", imgUrl: MensShirt },
+        { id: "7", title: "Ladys' Top", desc: "Ladys' top is an .........", price: "50000", category: "women", brand: "adidas", imgUrl: LadysShirt },
+        { id: "8", title: "Cotton Shirt", desc: "Cotton Shirt is an .........", price: "45000", category: "men", brand: "meesho", imgUrl: CottonShirt },
 
-        { id: "9", title: "Apple MacBook", price: "100000", category: "laptop", brand: "apple", imgUrl: AppleLapImg },
-        { id: "10", title: "Dell Laptop", price: "30000", category: "laptop", brand: "dell", imgUrl: DellLapImg },
-        { id: "11", title: "Hp Laptop", price: "50000", category: "laptop", brand: "hp", imgUrl: HpLapImg },
-        { id: "12", title: "Lenovo Laptop", price: "45000", category: "laptop", brand: "lenovo", imgUrl: LenovoLapImg },
+        { id: "9", title: "Apple MacBook", desc: "Apple MacBook is an .........", price: "100000", category: "laptop", brand: "apple", imgUrl: AppleLapImg },
+        { id: "10", title: "Dell Laptop", desc: "Apple MacBook is an .........", price: "30000", category: "laptop", brand: "dell", imgUrl: DellLapImg },
+        { id: "11", title: "Hp Laptop", desc: "Apple MacBook is an .........", price: "50000", category: "laptop", brand: "hp", imgUrl: HpLapImg },
+        { id: "12", title: "Lenovo Laptop", desc: "Apple MacBook is an .........", price: "45000", category: "laptop", brand: "lenovo", imgUrl: LenovoLapImg },
     ]
     return <div className={`card-group row mt-5 mb-5 ${styles.products} `}>
 
@@ -55,15 +56,18 @@ const Products = () => {
                     products.map(product => {
                         return <div className='col-lg-3 col-md-4 col-sm-6 col-xs-12 text-center' key={product.id}>
                             <div className="card" style={{ margin: "20px" }}>
-                                <img
-                                    src={product.imgUrl}
-                                    className="card-img-top"
-                                    alt={product.title}
-                                    width={"10px"}
-                                    height={"200px"}
-                                />
+                                <Link to={`/product/${product.id}`}>
+                                    <img
+                                        src={product.imgUrl}
+                                        className="card-img-top"
+                                        alt={product.title}
+                                        width={"10px"}
+                                        height={"200px"}
+                                    />
+                                </Link>
                                 <div className="card-body">
                                     <h5 className="card-title">{product.title}</h5>
+                                    {/* <p class="card-text">{product.desc}</p> */}
                                 </div>
                                 <ul className="list-group list-group-flush">
                                     <li className="list-group-item">₹{product.price}</li>

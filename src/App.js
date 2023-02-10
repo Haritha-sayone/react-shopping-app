@@ -9,6 +9,7 @@ import EditProduct from './components/admin/EditProduct';
 import Orders from './components/admin/Orders';
 import Home from './pages/Home/Home';
 import Products from './pages/Shop/Products';
+import ProductDetails from './pages/Shop/ProductDetails';
 import Cart from './components/cart/Cart';
 import MyOrders from './pages/Orders/MyOrders';
 
@@ -19,6 +20,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/products' element={<Products />} />
+        <Route path='/product/:id' element={<ProductDetails />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/my-orders' element={<MyOrders />} />
         {/* Admin Section */}

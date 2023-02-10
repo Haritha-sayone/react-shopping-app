@@ -10,20 +10,20 @@ import CottonShirt from '../../assets/cotton-shirt.jpg';
 
 const ViewProducts = () => {
     const products = [
-        { id: "1", title: "Apple MacBook", price: "100000", category: "laptop", brand: "apple", imgUrl: AppleLapImg },
-        { id: "2", title: "Dell Laptop", price: "30000", category: "laptop", brand: "dell", imgUrl: DellLapImg },
-        { id: "3", title: "Hp Laptop", price: "50000", category: "laptop", brand: "hp", imgUrl: HpLapImg },
-        { id: "4", title: "Lenovo Laptop", price: "45000", category: "laptop", brand: "lenovo", imgUrl: LenovoLapImg },
+        { id: "1", title: "Apple MacBook", desc: "Apple MacBook is an .........", price: "100000", category: "laptop", brand: "apple", imgUrl: AppleLapImg },
+        { id: "2", title: "Dell Laptop", desc: "Apple MacBook is an .........", price: "30000", category: "laptop", brand: "dell", imgUrl: DellLapImg },
+        { id: "3", title: "Hp Laptop", desc: "Apple MacBook is an .........", price: "50000", category: "laptop", brand: "hp", imgUrl: HpLapImg },
+        { id: "4", title: "Lenovo Laptop", desc: "Apple MacBook is an .........", price: "45000", category: "laptop", brand: "lenovo", imgUrl: LenovoLapImg },
 
-        { id: "5", title: "Camera", price: "10000", category: "camera", brand: "canva", imgUrl: CamImg },
-        { id: "6", title: "Shirt", price: "30000", category: "men", brand: "ajinora", imgUrl: MensShirt },
-        { id: "7", title: "Ladys' Top", price: "50000", category: "women", brand: "adidas", imgUrl: LadysShirt },
-        { id: "8", title: "Cotton Shirt", price: "45000", category: "men", brand: "meesho", imgUrl: CottonShirt },
+        { id: "5", title: "Camera", desc: "Camera is an .........", price: "10000", category: "camera", brand: "canva", imgUrl: CamImg },
+        { id: "6", title: "Shirt", desc: "Shirt is an .........", price: "30000", category: "men", brand: "ajinora", imgUrl: MensShirt },
+        { id: "7", title: "Ladys' Top", desc: "Ladys' top is an .........", price: "50000", category: "women", brand: "adidas", imgUrl: LadysShirt },
+        { id: "8", title: "Cotton Shirt", desc: "Cotton Shirt is an .........", price: "45000", category: "men", brand: "meesho", imgUrl: CottonShirt },
 
-        { id: "9", title: "Apple MacBook", price: "100000", category: "laptop", brand: "apple", imgUrl: AppleLapImg },
-        { id: "10", title: "Dell Laptop", price: "30000", category: "laptop", brand: "dell", imgUrl: DellLapImg },
-        { id: "11", title: "Hp Laptop", price: "50000", category: "laptop", brand: "hp", imgUrl: HpLapImg },
-        { id: "12", title: "Lenovo Laptop", price: "45000", category: "laptop", brand: "lenovo", imgUrl: LenovoLapImg },
+        { id: "9", title: "Apple MacBook", desc: "Apple MacBook is an .........", price: "100000", category: "laptop", brand: "apple", imgUrl: AppleLapImg },
+        { id: "10", title: "Dell Laptop", desc: "Apple MacBook is an .........", price: "30000", category: "laptop", brand: "dell", imgUrl: DellLapImg },
+        { id: "11", title: "Hp Laptop", desc: "Apple MacBook is an .........", price: "50000", category: "laptop", brand: "hp", imgUrl: HpLapImg },
+        { id: "12", title: "Lenovo Laptop", desc: "Apple MacBook is an .........", price: "45000", category: "laptop", brand: "lenovo", imgUrl: LenovoLapImg },
     ];
     return (
         <div className="container" style={{ marginTop: "78px" }}>
@@ -48,7 +48,9 @@ const ViewProducts = () => {
                                 <tr key={product.id}>
                                     <td>{product.id}</td>
                                     <td>
-                                        <img src={product.imgUrl} width={"100px"} height={"100px"} alt={product.title} />
+                                        <Link to={`/product/${product.id}`}>
+                                            <img src={product.imgUrl} width={"100px"} height={"100px"} alt={product.title} />
+                                        </Link>
                                     </td>
                                     <td>{product.title}</td>
                                     <td>₹{product.price}</td>

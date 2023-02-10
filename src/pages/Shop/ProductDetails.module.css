@@ -1,0 +1,29 @@
+.product {
+    margin-top: 78px;
+}
+
+.product #product-detail-image {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.price {
+    color: orangered;
+    font-weight: 500;
+}
+
+.count {
+    margin-left: 3px;
+    margin-bottom: 20px;
+}
+
+.count .minus,
+.count .plus {
+    border: 1px solid rgb(166, 166, 180);
+}
+
+.count b {
+    color:black;
+    margin:0px 5px;
+}
