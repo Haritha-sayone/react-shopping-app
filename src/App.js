@@ -6,12 +6,14 @@ import Dashboard from './components/admin/Dashboard';
 import AddProducts from './components/admin/AddProducts';
 import ViewProducts from './components/admin/ViewProducts';
 import EditProduct from './components/admin/EditProduct';
+import Cart from './components/cart/Cart';
 import Orders from './components/admin/Orders';
 import Home from './pages/Home/Home';
 import Products from './pages/Shop/Products';
 import ProductDetails from './pages/Shop/ProductDetails';
-import Cart from './components/cart/Cart';
 import MyOrders from './pages/Orders/MyOrders';
+import SignUp from './pages/Auth/SignUp';
+import SignIn from './pages/Auth/SignIn';
 
 function App() {
   return (
@@ -23,11 +25,13 @@ function App() {
         <Route path='/product/:id' element={<ProductDetails />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/my-orders' element={<MyOrders />} />
+        <Route path='/signup' element={<SignUp />} />
+        <Route path='/login' element={<SignIn />} />
         {/* Admin Section */}
         <Route path='/admin' element={<Dashboard />} />
         <Route path='/products/add' element={<AddProducts />} />
         <Route path='/products/list' element={<ViewProducts />} />
-        <Route path='/product/:id' element={<EditProduct />} />
+        <Route path='/product/:id/edit' element={<EditProduct />} />
         <Route path='/orders' element={<Orders />} />
       </Routes>
       <Footer />

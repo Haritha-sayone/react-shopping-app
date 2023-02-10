@@ -57,13 +57,13 @@ const ViewProducts = () => {
                                     <td>{product.category}</td>
                                     <td>
                                         {/* <button className='btn btn-success' style={{ marginRight: "5px" }}>Edit</button> */}
-                                        <Link to={`/product/${product.id}`}>
+                                        <Link to={`/product/${product.id}/edit`}>
                                             <i className="fa fa-pencil" aria-hidden="true" style={{ marginRight: "10px", color: "#212529" }}></i>
                                         </Link>
                                         {/* <button className='btn btn-danger'>Delete</button> */}
-                                        <Link>
+                                        <button style={{ border: "none", background: "none" }}>
                                             <i className="fa fa-trash" aria-hidden="true" style={{ color: "#212529" }}></i>
-                                        </Link>
+                                        </button>
                                     </td>
                                 </tr>
                             )
