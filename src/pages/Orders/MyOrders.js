@@ -9,7 +9,7 @@ const MyOrders = () => {
                 { id: "5", title: "Camera", descr: "Camera is an .........", price: "10000", category: "camera", brand: "canva", imgUrl: CamImg },
                 { id: "6", title: "Shirt", descr: "Shirt is an .........", price: "30000", category: "men", brand: "ajinora", imgUrl: MensShirt },
             ],
-            orderDate:"12-02-2023",
+            orderDate: "12-02-2023",
             userId: "abc",
             total: "10000",
             housename: "ABC Street",
@@ -22,7 +22,6 @@ const MyOrders = () => {
     ];
     return <div className='container'>
         <h4 className='text-center pt-5'>My Orders</h4>
-        {/* Show all the active orders of the user - other than cancelled and delivered orders */}
         <table className='table mt-5 mb-5'>
             <thead>
                 <tr>

@@ -2,7 +2,7 @@
     margin-top: 78px;
 }
 
-.product #product-detail-image {
+#product-detail-image {
     width: 100%;
     border: 1px solid #ccc;
     border-radius: 3px;

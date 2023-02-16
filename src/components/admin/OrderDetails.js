@@ -45,7 +45,6 @@ const OrderDetails = () => {
                     </p>
                     <select defaultValue="Ordered" onChange={(event) => console.log(event.target.value)}>
                         <option value="ordered">Ordered</option>
-                        <option value="cancelled">Cancelled</option>
                         <option value="cancelled">Shipped</option>
                         <option value="delivered">Delivered</option>
                     </select>

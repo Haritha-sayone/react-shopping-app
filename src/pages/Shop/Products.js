@@ -17,9 +17,9 @@ const Products = () => {
         { id: "4", title: "Lenovo Laptop", desc: "Lenovo Laptop is an .........", price: "45000", category: "laptop", brand: "lenovo", imgUrl: LenovoLapImg },
 
         { id: "5", title: "Camera", desc: "Camera is an .........", price: "10000", category: "camera", brand: "canva", imgUrl: CamImg },
-        { id: "6", title: "Shirt", desc: "Shirt is an .........", price: "30000", category: "men", brand: "ajinora", imgUrl: MensShirt },
-        { id: "7", title: "Ladys' Top", desc: "Ladys' top is an .........", price: "50000", category: "women", brand: "adidas", imgUrl: LadysShirt },
-        { id: "8", title: "Cotton Shirt", desc: "Cotton Shirt is an .........", price: "45000", category: "men", brand: "meesho", imgUrl: CottonShirt },
+        { id: "6", title: "Shirt", desc: "Shirt is an .........", price: "30000", category: "fashion", brand: "ajinora", imgUrl: MensShirt },
+        { id: "7", title: "Ladys' Top", desc: "Ladys' top is an .........", price: "50000", category: "fashion", brand: "adidas", imgUrl: LadysShirt },
+        { id: "8", title: "Cotton Shirt", desc: "Cotton Shirt is an .........", price: "45000", category: "fashion", brand: "meesho", imgUrl: CottonShirt },
 
         { id: "9", title: "Apple MacBook", desc: "Apple MacBook is an .........", price: "100000", category: "laptop", brand: "apple", imgUrl: AppleLapImg },
         { id: "10", title: "Dell Laptop", desc: "Apple MacBook is an .........", price: "30000", category: "laptop", brand: "dell", imgUrl: DellLapImg },
@@ -31,15 +31,19 @@ const Products = () => {
         <div className={`col-2 ${styles["filters"]}`}>
             <div className={styles.category}>
                 <h6>Filter By Category</h6>
+                <button>All</button>
                 <button>Laptops</button>
                 <button>Mobiles</button>
-                <button>Laptops</button>
+                <button>Camera</button>
+                <button>Fashion</button>
             </div>
             <div className={styles.brand}>
                 <h6>Filter By Brand</h6>
+                <button>All</button>
                 <button>Apple</button>
                 <button>Lenovo</button>
                 <button>Myntra</button>
+                <button>Meesho</button>
             </div>
             {/* <button className="btn btn-outline-primary">All</button>
             <button className="btn btn-outline-info">Laptops</button>
@@ -56,7 +60,7 @@ const Products = () => {
                     products.map(product => {
                         return <div className='col-lg-3 col-md-4 col-sm-6 col-xs-12 text-center' key={product.id}>
                             <div className="card" style={{ margin: "20px" }}>
-                                <Link to={`/product/${product.id}`}>
+                                <Link to={`/product/${product.id}/details`}>
                                     <img
                                         src={product.imgUrl}
                                         className="card-img-top"

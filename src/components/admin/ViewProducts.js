@@ -48,7 +48,7 @@ const ViewProducts = () => {
                                 <tr key={product.id}>
                                     <td>{product.id}</td>
                                     <td>
-                                        <Link to={`/product/${product.id}`}>
+                                        <Link to={`/product/${product.id}/details`}>
                                             <img src={product.imgUrl} width={"100px"} height={"100px"} alt={product.title} />
                                         </Link>
                                     </td>

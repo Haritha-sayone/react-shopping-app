@@ -32,9 +32,20 @@ const EditProduct = () => {
                             <option value="default">Choose Category</option>
                             <option value="laptops">Laptops</option>
                             <option value="mobiles">Mobiles</option>
-                            <option value="men">Mens wear</option>
-                            <option value="women">Womens wear</option>
-                            <option value="shoes">Shoes</option>
+                            <option value="camera">Camera</option>
+                            <option value="fashion">Fashion</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="brand" className="form-label">brand</label>
+                        <select className="form-select" aria-label="Default select example">
+                            <option value="default">Choose Brand</option>
+                            <option value="apple">Apple</option>
+                            <option value="lenovo">Lenovo</option>
+                            <option value="myntra">Myntra</option>
+                            <option value="meesho">Meesho</option>
+                            <option value="other">Other</option>
                         </select>
                     </div>
                     <div className="mb-3">
