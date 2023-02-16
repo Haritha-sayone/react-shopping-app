@@ -1,8 +1,20 @@
+.cart {
+    background-color: tan;
+}
+
 #shop-link {
     background-color: rgb(28, 28, 62);
     color: white;
     border: 2px solid rgb(28,28,62);
     border-radius: 4px;
+}
+
+.cart-card {
+    max-width: 540px;
+}
+
+.cart-summary-card {
+    max-width: 170px;
 }
 
 .product-quantity {

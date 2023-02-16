@@ -13,8 +13,8 @@ const Cart = () => {
         { id: "8", title: "Cotton Shirt", descr: "Cotton Shirt is an .........", price: "45000", category: "men", brand: "meesho", imgUrl: CottonShirt },
     ];
     return (
-        <div className='row my-5 py-5' style={{ backgroundColor: "tan" }}>
-            <h2 className='text-center py-3'>Cart</h2>
+        <div className={`row my-5 py-5 ${styles.cart}`}>
+            <h2 className='text-center py-3'>My Cart</h2>
 
             <div className='col-2 text-center'>
                 <Link to="/products">
@@ -29,7 +29,7 @@ const Cart = () => {
                             <div className='card-group row' key={product.id}>
                                 <div className='col-2'></div>
                                 <div className='col-8'>
-                                    <div className="card mb-3" style={{ maxWidth: "540px" }}>
+                                    <div className={`card mb-3 ${styles["cart-card"]}`}>
                                         <div className="row g-0">
 
                                             <div className="col-md-4">
@@ -77,14 +77,18 @@ const Cart = () => {
                         )
                     })
                 }
+
             </div>
 
             <div className='col-2'>
-                <div className='card' style={{ maxWidth: "150px" }}>
+                <div className={`card ${styles["cart-summary-card"]}`}>
                     <div className="card-body">
-                        <h5 className="card-title">Checkout</h5>
-                        <p className="card-text text-muted">Total : ₹1000</p>
-                        <button className='btn btn-success'>Order Now</button>
+                        <h5 className="card-title">Cart Summary</h5>
+                        <p className="card-text text-muted">Items Count : 4</p>
+                        <p className="card-text text-muted">Total : ₹10000</p>
+                        <Link to='/checkout'>
+                        <button className='btn btn-success'>Checkout</button>
+                        </Link>
                         <div className='mt-2' style={{ borderTop: "2px solid black" }}>
                             <button className='btn btn-danger mt-2'>Clear Cart</button>
                         </div>
