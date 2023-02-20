@@ -16,11 +16,14 @@ import MyOrders from './pages/Orders/MyOrders';
 import Checkout from './pages/Checkout/Checkout';
 import SignUp from './pages/Auth/SignUp';
 import SignIn from './pages/Auth/SignIn';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
     <div className="app">
       <Header />
+      <ToastContainer style={{ marginTop: "78px" }} />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/products' element={<Products />} />
