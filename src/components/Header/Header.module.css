@@ -8,6 +8,7 @@
     top: 0;
     width: 100vw;
     z-index:1000;
+    padding:15px;
 }
 
 .logo {
@@ -39,18 +40,23 @@
 }
 
 .header button {
-    background-color: white;
+    /* background-color: white;
     color: orangered;
     border: 2px solid orangered;
     border-radius: 45px;
     margin: 15px 15px;
     padding: 10px 10px;
     font-weight: 600;
-    font-size: medium;
+    font-size: medium; */
+    border:none;
+    background-color: rgb(28, 28, 62);
+    /* background-color: orangered; */
+    color:white;
+    margin-left: 10px;
 }
 
 .header button:hover,
 .header button:active {
-    background-color: orangered;
-    color: white;
+    color:orangered;
+    text-decoration: underline solid white 2px;
 }

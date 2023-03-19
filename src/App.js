@@ -39,7 +39,7 @@ function App() {
         <Route path='/products/list' element={<ViewProducts />} />
         <Route path='/product/:id/edit' element={<EditProduct />} />
         <Route path='/orders' element={<Orders />} />
-        <Route path='/order/:id/details' element={<OrderDetails />} />
+        <Route path='/users/:uid/order/:id/details' element={<OrderDetails />} />
       </Routes>
       <Footer />
     </div>

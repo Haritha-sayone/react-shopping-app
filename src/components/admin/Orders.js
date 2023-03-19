@@ -1,28 +1,23 @@
+import { deleteDoc, doc } from "firebase/firestore";
+import { db } from "../../firebase/config";
 import { Link } from "react-router-dom";
-import CamImg from '../../assets/cam.jpg';
-import MensShirt from '../../assets/mens-shirt.jpeg';
+import { useSelector, useDispatch } from "react-redux";
+import { REMOVE_CANCELLED_ORDER } from "../../redux/slices/orderSlice";
+import { toast } from "react-toastify";
 
 const Orders = () => {
-    const orders = [
-        {
-            id: "TQIEHSNSDJDJ",
-            products: [
-                { id: "5", title: "Camera", descr: "Camera is an .........", price: "10000", category: "camera", brand: "canva", imgUrl: CamImg },
-                { id: "6", title: "Shirt", descr: "Shirt is an .........", price: "30000", category: "men", brand: "ajinora", imgUrl: MensShirt },
-            ],
-            orderDate: "12-02-2023",
-            userId: "abc",
-            total: "10000",
-            housename: "ABC Street",
-            city: "Kottayam",
-            state: "Kerala",
-            zip: "686571",
-            phone: "6534262729",
-            status: "Delivered"
-        },
-    ];
+
+    const { orders } = useSelector(state => state.order);
+    const dispatch = useDispatch();
+
+    const removeCancelledOrder = (id, userID) => {
+        dispatch(REMOVE_CANCELLED_ORDER(id));
+        deleteDoc(doc(db, `users/${userID}/orders`, id));
+        toast.info(`Deleted order ${id}`);
+    };
+
     return (
-        <div className="container" style={{ marginTop: "78px" }}>
+        <div className="container-fluid" style={{ marginTop: "78px" }}>
             <h4 className='text-center pt-5'>All Orders</h4>
             <table className='table mt-5 mb-5'>
                 <thead>
@@ -31,9 +26,8 @@ const Orders = () => {
                         <th scope="col">Id</th>
                         <th scope="col">Customer</th>
                         <th scope="col">Order Date</th>
-                        {/* <th scope="col">Products</th> */}
+                        <th scope="col">Order Time</th>
                         <th scope="col">Order Status</th>
-                        {/* <th scope="col">Delivery Status</th> */}
                         <th scope="col">Order Amount</th>
                         <th scope="col">Actions</th>
                     </tr>
@@ -42,22 +36,40 @@ const Orders = () => {
                 <tbody>
                     {
                         orders.map((order, index) => {
+                            const {
+                                id,
+                                userID,
+                                orderDate,
+                                orderTime,
+                                orderStatus,
+                                orderTotalAmount
+                            } = order;
+
+                            const color = orderStatus === "delivered" ? "green" : orderStatus === "cancelled" ? "red" : "orange";
+
                             return (
-                                <tr key={order.id}>
+                                <tr key={id}>
                                     <td>{index + 1}</td>
-                                    <td>{order.id}</td>
-                                    <td>{order.userId}</td>
-                                    <td>{order.orderDate}</td>
-                                    {/* <td>{`${order.products.title}, `}</td> */}
-                                    <td>{order.status}</td>
-                                    {/* <td>Delivered</td> */}
-                                    <td>₹{order.total}</td>
+                                    <td>{id}</td>
+                                    <td>{userID}</td>
+                                    <td>{orderDate}</td>
+                                    <td>{orderTime}</td>
+                                    <td style={{ color: color, fontWeight: "500" }}>{orderStatus}</td>
+                                    <td>₹ {orderTotalAmount}</td>
                                     <td>
-                                        {/* <button className='btn btn-success' style={{ marginRight: "5px" }}>Edit</button> */}
-                                        <Link to={`/order/${order.id}/details`}>
-                                            <i className="fa fa-eye" aria-hidden="true" style={{ marginRight: "10px", color: "#212529" }}></i>
+                                        <Link to={`/users/${userID}/order/${id}/details`}>
+                                            <i
+                                                className="fa fa-eye"
+                                                aria-hidden="true"
+                                                style={{ marginRight: "10px", color: "#212529" }}
+                                            ></i>
                                         </Link>
 
+                                        {
+                                            orderStatus === "cancelled" && <button style={{ border: "none", background: "none" }} onClick={() => removeCancelledOrder(id, userID)}>
+                                                <i className="fa fa-trash" aria-hidden="true" style={{ color: "#212529" }}></i>
+                                            </button>
+                                        }
                                     </td>
                                 </tr>
                             )
@@ -65,6 +77,9 @@ const Orders = () => {
                     }
                 </tbody>
             </table>
+            {
+                !orders.length && <p className="text-center py-5" style={{ marginLeft: "6px" }}>No orders found.</p>
+            }
         </div>
     )
 };

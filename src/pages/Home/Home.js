@@ -7,9 +7,9 @@ const Home = () => {
         <img
             src={SliderImage}
             width="100%"
-            height="500px"
+            height="520px"
             alt="A girl with shopping bags"
-            id="slider"
+            id={styles.slider}
         />
         <h4>Our Featured Products</h4>
         <Products />
