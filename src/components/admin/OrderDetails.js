@@ -34,6 +34,7 @@ const OrderDetails = () => {
         }).then(() => {
             setIsLoading(false);
             dispatch(EDIT_ORDER_STATUS({ id, status }));
+            order.orderStatus = status;
         });
 
     };
@@ -43,7 +44,7 @@ const OrderDetails = () => {
         getDoc(docRef).then(doc => {
             setOrder(doc.data());
         });
-    }, [uid, id, order]);
+    }, []);
 
     return (
         <div className="container-fluid">

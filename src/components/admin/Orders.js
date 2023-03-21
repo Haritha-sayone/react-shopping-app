@@ -19,7 +19,7 @@ const Orders = () => {
     return (
         <div className="container-fluid" style={{ marginTop: "78px" }}>
             <h4 className='text-center pt-5'>All Orders</h4>
-            <table className='table mt-5 mb-5'>
+            <table className='table table-responsive mt-5 mb-5'>
                 <thead>
                     <tr>
                         <th scope="col">s/n</th>

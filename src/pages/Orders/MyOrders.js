@@ -10,11 +10,7 @@ const MyOrders = () => {
     const dispatch = useDispatch();
     const filteredOrders = orders.filter(order => order.userID === userID && order.orderStatus !== "cancelled");
 
-    const cancelOrder = (id, status) => {
-        if (status === "delivered") {
-            toast.warning("This item has already been delivered to you.");
-            return;
-        }
+    const cancelOrder = id => {
         dispatch(CANCEL_ORDER(id));
         updateDoc(doc(db, `users/${userID}/orders`, id), {
             orderStatus: "cancelled"
@@ -24,7 +20,7 @@ const MyOrders = () => {
 
     return <div className='container-fluid'>
         <h4 className='text-center pt-5'>My Orders</h4>
-        <table className='table mt-5 mb-5'>
+        <table className='table table-responsive mt-5 mb-5'>
             <thead>
                 <tr>
                     <th>s/n</th>
@@ -82,7 +78,7 @@ const MyOrders = () => {
                                     </p>
                                 </td>
                                 <td>
-                                    <button className='btn btn-danger' onClick={() => cancelOrder(id, orderStatus)}>Cancel Order</button>
+                                    <button className='btn btn-danger' disabled={orderStatus === "delivered" ? true : false} onClick={() => cancelOrder(id)}>Cancel Order</button>
                                 </td>
                             </tr>
                         );

@@ -77,7 +77,7 @@ const Cart = () => {
                                                     <p className="card-text text-muted">Price : ₹ {item.price}</p>
                                                     <p className="card-text"><small className="text-muted">
                                                         Quantity : <span className={styles["product-quantity"]}>
-                                                            <button onClick={() => decreaseCartQuantity(item)}>-</button>
+                                                            <button disabled={item.qty === 1 ? true : false} onClick={() => decreaseCartQuantity(item)}>-</button>
                                                             <b>{item.qty}</b>
                                                             <button onClick={() => increaseCartQuantity(item)}>+</button>
                                                         </span>

@@ -18,13 +18,13 @@ const SignIn = () => {
 
   const login = event => {
     event.preventDefault();
-    console.log(email, password);
+    // console.log(email, password);
     setError("");
     setIsLoading(true);
     signInWithEmailAndPassword(auth, email, password).then(cred => {
       const docRef = doc(db, "users", cred.user.uid);
       getDoc(docRef).then(doc => {
-        console.log(doc.data());
+        // console.log(doc.data());
         dispatch(SET_ACTIVE_USER({
           email: doc.data().email,
           userName: doc.data().username,
@@ -37,10 +37,10 @@ const SignIn = () => {
       });
 
     }).catch(error => {
-      console.log(error);
+      // console.log(error);
       setIsLoading(false);
       if (error.code === "auth/user-not-found") {
-        setError("Incorrect email id.");
+        setError("User not found.");
         toast.error("Login failed");
       }
       else if (error.code === "auth/wrong-password") {
@@ -59,8 +59,8 @@ const SignIn = () => {
     setError("");
     setIsLoading(true);
     signInWithPopup(auth, provider).then(result => {
-      console.log("result= ", result);
-      console.log("userID= ", result.user.uid);
+      // console.log("result= ", result);
+      // console.log("userID= ", result.user.uid);
       const docRef = doc(db, "users", result.user.uid);
       getDoc(docRef).then(doc => {
         console.log(doc.data());

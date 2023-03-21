@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import { auth, db } from "../../firebase/config";
 import { doc, setDoc } from "firebase/firestore";
 import Loader from "../../components/Loader/Loader";
@@ -25,6 +25,8 @@ const SignUp = () => {
         setError("");
         setIsLoading(true);
         createUserWithEmailAndPassword(auth, email, password).then(cred => {
+            // sendEmailVerification(cred.user);
+            // toast.info("An email has been sent to your email id. Please verify your email.");
             const docRef = doc(db, "users", cred.user.uid);
             setDoc(docRef, {
                 username,

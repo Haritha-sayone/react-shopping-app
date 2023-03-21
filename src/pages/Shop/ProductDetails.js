@@ -88,7 +88,7 @@ const ProductDetails = () => {
                         !isAdmin && (
                             <div>
                                 <div className={styles.count}>
-                                    <button className={styles.minus} onClick={() => setQty(qty - 1)}>-</button>
+                                    <button className={styles.minus} disabled={qty===1?true:false} onClick={() => setQty(qty - 1)}>-</button>
                                     <b>{qty}</b>
                                     <button className={styles.plus} onClick={() => setQty(qty + 1)}>+</button>
                                 </div>

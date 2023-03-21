@@ -1,9 +1,10 @@
 import styles from './Header.module.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
-import { auth, } from '../../firebase/config';
+import { auth } from '../../firebase/config';
 import { useSelector, useDispatch } from 'react-redux';
 import { REMOVE_ACTIVE_USER } from '../../redux/slices/authSlice';
+import { CLEAR_CART } from '../../redux/slices/cartSlice';
 
 
 const Header = () => {
@@ -16,6 +17,7 @@ const Header = () => {
         console.log("logged out");
         signOut(auth).then(() => {
             dispatch(REMOVE_ACTIVE_USER());
+            dispatch(CLEAR_CART());
             navigate("/login");
         });
     };
