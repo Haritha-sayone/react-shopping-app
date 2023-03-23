@@ -86,7 +86,7 @@ function Products() {
             setProducts(allProducts);
             setIsLoading(false);
         });
-    }, [products, filteredProducts]);
+    }, []);
 
     const addToCart = (product) => {
         if (!isLoggedIn) {
@@ -106,7 +106,7 @@ function Products() {
             //     pid:product.id,
             //     uid:userID
             // })
-            
+
             // addDoc(collection(db, "cart"), {
             //     product,
             //     pid: product.id,
@@ -130,7 +130,7 @@ function Products() {
             <div className="row mt-5 mx-2 pt-5">
                 <div className="col-1">
                     <button className="btn btn-outline-success" onClick={clearAllFilters}>
-                        <i className="fa fa-refresh" aria-hidden="true"></i>
+                        <i className="fa fa-repeat" aria-hidden="true"></i>
                     </button>
                 </div>
                 <div className="col-3">

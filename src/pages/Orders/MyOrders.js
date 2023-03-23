@@ -8,7 +8,7 @@ const MyOrders = () => {
     const { userID } = useSelector(state => state.auth);
     const { orders } = useSelector(state => state.order);
     const dispatch = useDispatch();
-    const filteredOrders = orders.filter(order => order.userID === userID && order.orderStatus !== "cancelled");
+    const filteredOrders = orders.filter(order => order.userID === userID);
 
     const cancelOrder = id => {
         dispatch(CANCEL_ORDER(id));
@@ -78,7 +78,7 @@ const MyOrders = () => {
                                     </p>
                                 </td>
                                 <td>
-                                    <button className='btn btn-danger' disabled={orderStatus === "delivered" ? true : false} onClick={() => cancelOrder(id)}>Cancel Order</button>
+                                    <button className='btn btn-danger' disabled={orderStatus === "delivered" || orderStatus === "cancelled" ? true : false} onClick={() => cancelOrder(id)}>Cancel Order</button>
                                 </td>
                             </tr>
                         );

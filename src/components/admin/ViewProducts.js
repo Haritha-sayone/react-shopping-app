@@ -2,15 +2,32 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getDocs, productsColl, db } from '../../firebase/config';
 import { deleteDoc, doc } from 'firebase/firestore';
-import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
 
 const ViewProducts = () => {
     const [products, setProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
     const deleteProduct = (id, name) => {
-        deleteDoc(doc(db, "products", id));
-        toast.info(`${name} deleted successfully.`);
+        Swal.fire({
+            title: `Are you sure you want to delete ${name}?`,
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#dc3545',
+            cancelButtonColor: '#198754',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                deleteDoc(doc(db, "products", id)).then(() => {
+                    Swal.fire(
+                        'Deleted!',
+                        `${name} has been deleted.`,
+                        'success'
+                    );
+                });
+            }
+        });
     };
 
     useEffect(() => {
@@ -30,7 +47,6 @@ const ViewProducts = () => {
         <div className="container" style={{ marginTop: "78px" }}>
             <h4 className='text-center pt-5'>Products List</h4>
             <table className='table mt-5 mb-5'>
-
                 <thead>
                     <tr>
                         <th scope="col">Id</th>

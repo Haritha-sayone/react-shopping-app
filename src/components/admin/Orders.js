@@ -3,17 +3,33 @@ import { db } from "../../firebase/config";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { REMOVE_CANCELLED_ORDER } from "../../redux/slices/orderSlice";
-import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 const Orders = () => {
-
     const { orders } = useSelector(state => state.order);
     const dispatch = useDispatch();
 
     const removeCancelledOrder = (id, userID) => {
-        dispatch(REMOVE_CANCELLED_ORDER(id));
-        deleteDoc(doc(db, `users/${userID}/orders`, id));
-        toast.info(`Deleted order ${id}`);
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#dc3545',
+            cancelButtonColor: '#198754',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch(REMOVE_CANCELLED_ORDER(id));
+                deleteDoc(doc(db, `users/${userID}/orders`, id)).then(() => {
+                    Swal.fire(
+                        'Deleted!',
+                        `Deleted order ${id}.`,
+                        'success'
+                    );
+                });
+            }
+        });
     };
 
     return (
