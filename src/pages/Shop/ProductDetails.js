@@ -31,7 +31,9 @@ const ProductDetails = () => {
     const addToCart = (product) => {
         if (!isLoggedIn) {
             toast.info("Please login to continue.");
-            navigate("/login");
+            navigate("/login", {
+                state: product.id
+            });
         }
         else if (isLoggedIn && isAdmin) {
             toast.warning("No permission.");
@@ -88,7 +90,7 @@ const ProductDetails = () => {
                         !isAdmin && (
                             <div>
                                 <div className={styles.count}>
-                                    <button className={styles.minus} disabled={qty===1?true:false} onClick={() => setQty(qty - 1)}>-</button>
+                                    <button className={styles.minus} disabled={qty === 1 ? true : false} onClick={() => setQty(qty - 1)}>-</button>
                                     <b>{qty}</b>
                                     <button className={styles.plus} onClick={() => setQty(qty + 1)}>+</button>
                                 </div>

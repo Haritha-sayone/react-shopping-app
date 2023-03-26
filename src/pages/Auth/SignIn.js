@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { SET_ACTIVE_USER } from "../../redux/slices/authSlice";
 import { toast } from "react-toastify";
@@ -15,6 +15,7 @@ const SignIn = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const login = event => {
     event.preventDefault();
@@ -33,7 +34,8 @@ const SignIn = () => {
         }));
         setIsLoading(false);
         toast.success("Login Success.");
-        doc.data().isAdmin === true ? navigate("/admin") : navigate("/products");
+        location.state ? navigate(`/product/${location.state}/details`)
+          : doc.data().isAdmin === true ? navigate("/admin") : navigate("/products");
       });
 
     }).catch(error => {
@@ -72,7 +74,8 @@ const SignIn = () => {
         }));
         setIsLoading(false);
         toast.success("Login Success.");
-        doc.data().isAdmin === true ? navigate("/admin") : navigate("/products");
+        location.state ? navigate(`/product/${location.state}/details`)
+          : doc.data().isAdmin === true ? navigate("/admin") : navigate("/products");
       }).catch(error => {
         // signOut(auth).then(() => {
         //   toast.error("Please create an account first");
