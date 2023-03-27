@@ -18,6 +18,10 @@ import SignUp from './pages/Auth/SignUp';
 import SignIn from './pages/Auth/SignIn';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PrivateRoute from './pages/ProtectedPages/PrivateRoute';
+import AdminRoute from './pages/ProtectedPages/AdminRoute';
+import Restricted from './pages/ProtectedPages/Restricted';
+import PageNotFound from './pages/PageNotFound';
 
 function App() {
   return (
@@ -28,18 +32,20 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/products' element={<Products />} />
         <Route path='/product/:id/details' element={<ProductDetails />} />
-        <Route path='/cart' element={<Cart />} />
-        <Route path='/checkout' element={<Checkout />} />
-        <Route path='/my-orders' element={<MyOrders />} />
+        <Route path='/cart' element={<PrivateRoute><Cart /></PrivateRoute>} />
+        <Route path='/checkout' element={<PrivateRoute><Checkout /></PrivateRoute>} />
+        <Route path='/my-orders' element={<PrivateRoute><MyOrders /></PrivateRoute>} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/login' element={<SignIn />} />
+        <Route path='/*' element={<PageNotFound />} />
         {/* Admin Section */}
-        <Route path='/admin' element={<Dashboard />} />
-        <Route path='/products/add' element={<AddProducts />} />
-        <Route path='/products/list' element={<ViewProducts />} />
-        <Route path='/product/:id/edit' element={<EditProduct />} />
-        <Route path='/orders' element={<Orders />} />
-        <Route path='/users/:uid/order/:id/details' element={<OrderDetails />} />
+        <Route path='/admin' element={<AdminRoute><Dashboard /></AdminRoute>} />
+        <Route path='/products/add' element={<AdminRoute><AddProducts /></AdminRoute>} />
+        <Route path='/products/list' element={<AdminRoute><ViewProducts /></AdminRoute>} />
+        <Route path='/product/:id/edit' element={<AdminRoute><EditProduct /></AdminRoute>} />
+        <Route path='/orders' element={<AdminRoute><Orders /></AdminRoute>} />
+        <Route path='/users/:uid/order/:id/details' element={<AdminRoute><OrderDetails /></AdminRoute>} />
+        <Route path='/restricted' element={<Restricted />} />
       </Routes>
       <Footer />
     </div>

@@ -19,6 +19,10 @@ const SignIn = () => {
 
   const login = event => {
     event.preventDefault();
+    if (auth.currentUser) {
+      toast.warning("Please logout to login again.");
+      return;
+    }
     // console.log(email, password);
     setError("");
     setIsLoading(true);
@@ -58,6 +62,10 @@ const SignIn = () => {
 
   // Login with google
   const googleLogin = () => {
+    if (auth.currentUser) {
+      toast.warning("Please logout to login again.");
+      return;
+    }
     setError("");
     setIsLoading(true);
     signInWithPopup(auth, provider).then(result => {
