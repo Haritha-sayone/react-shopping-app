@@ -5,7 +5,8 @@ const initialState = {
     isAdmin: false,
     email: null,
     userName: null,
-    userID: null
+    userID: null,
+    addresses: []
 };
 
 const authSlice = createSlice({
@@ -28,13 +29,28 @@ const authSlice = createSlice({
             state.userName = null;
             state.userID = null;
         },
-
+        SAVE_USER_ADDRESS: (state, action) => {
+            console.log("payload = ", action.payload);
+            const itemIndex = state.addresses.findIndex(item => item.uid === action.payload.userID);
+            console.log("item index = ", itemIndex);
+            if (itemIndex >= 0) {
+                // address is already saved in state
+                // just update the saved address
+                console.log("item = ", state.addresses[itemIndex]);
+                state.addresses[itemIndex].shippingAddress = action.payload.shippingAddress;
+            }
+            else {
+                // this is a new order
+                // add address to state
+                state.addresses.push({ uid: action.payload.userID, shippingAddress: action.payload.shippingAddress });
+            }
+        },
     },
 
 });
 
-export const { SET_ACTIVE_USER, REMOVE_ACTIVE_USER } = authSlice.actions;
+export const { SET_ACTIVE_USER, REMOVE_ACTIVE_USER, SAVE_USER_ADDRESS } = authSlice.actions;
 
-export const { isLoggedIn, isAdmin, email, userName, userID } = authSlice;
+export const { isLoggedIn, isAdmin, email, userName, userID, addresses } = authSlice;
 
 export default authSlice.reducer;

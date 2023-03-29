@@ -6,10 +6,16 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { SAVE_ORDER } from "../../redux/slices/orderSlice";
 import { CLEAR_CART } from "../../redux/slices/cartSlice";
+import { SAVE_USER_ADDRESS } from "../../redux/slices/authSlice";
 import Loader from "../../components/Loader/Loader";
 
 const Checkout = () => {
-    const [shippingAddress, setShippingAddress] = useState({
+    const { cartItems, cartCount, totalAmount } = useSelector(state => state.cart);
+    const { userID, email, addresses } = useSelector(state => state.auth);
+    // console.log("getting correct address here = ", addresses);
+    const address = addresses.find(item => item.uid === userID);
+    // console.log("obj = ", address);
+    const [shippingAddress, setShippingAddress] = useState(address ? address.shippingAddress : {
         houseName: "",
         city: "",
         state: "",
@@ -18,8 +24,7 @@ const Checkout = () => {
         phone: ""
     });
     const [isLoading, setIsLoading] = useState(false);
-    const { cartItems, cartCount, totalAmount } = useSelector(state => state.cart);
-    const { userID, email } = useSelector(state => state.auth);
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -47,14 +52,15 @@ const Checkout = () => {
             uid: userID,
             userEmail: email,
             orderDate: date,
-            orderTime:time,
+            orderTime: time,
             orderStatus: "ordered",
             shippingAddress
         }).then(docRef => {
             setIsLoading(false);
             const orderId = docRef.id;
             updateDoc(doc(db, `users/${userID}/orders`, docRef.id), { id: docRef.id });
-            dispatch(SAVE_ORDER({ cartItems, totalAmount, shippingAddress, userID, email, date,time, orderId }));
+            dispatch(SAVE_ORDER({ cartItems, totalAmount, shippingAddress, userID, email, date, time, orderId }));
+            dispatch(SAVE_USER_ADDRESS({ userID, shippingAddress }));
             dispatch(CLEAR_CART());
             toast.success("order placed");
             navigate("/my-orders");
