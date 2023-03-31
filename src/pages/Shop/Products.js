@@ -21,58 +21,69 @@ function Products() {
     const refObj = useRef();
 
     const filterByCategory = category => {
-        setProductBrand("all");
-        setPriceRange(200000);
-        refObj.current.value = "";
-        if (category === "all") {
-            setFilterStatus(false);
-            return;
-        };
-        setFilterStatus(true);
         setProductCategory(category);
-        const selectedItems = products.filter(product => product.category.toLowerCase() === category.toLowerCase());
-        setFilteredProducts(selectedItems);
+        if (productBrand !== "all") {
+            const selectedItems = products.filter(product => product.category.toLowerCase() === category.toLowerCase() && product.brand.toLowerCase() === productBrand && Number(product.price) <= priceRange);
+            setFilteredProducts(selectedItems);
+        }
+        else {
+            const selectedItems = products.filter(product => product.category.toLowerCase() === category.toLowerCase() && Number(product.price) <= priceRange);
+            setFilteredProducts(selectedItems);
+        }
+
+        setFilterStatus(true);
     };
 
     const filterByBrand = brand => {
-        setProductCategory("all");
-        setPriceRange(200000);
-        refObj.current.value = "";
-        if (brand === "all") {
-            setFilterStatus(false);
-            return;
-        };
-        setFilterStatus(true);
         setProductBrand(brand);
-        const selectedItems = products.filter(product => product.brand.toLowerCase() === brand.toLowerCase());
-        setFilteredProducts(selectedItems);
+        if (productCategory !== "all") {
+            const selectedItems = products.filter(product => product.brand.toLowerCase() === brand.toLowerCase() && product.category.toLowerCase() === productCategory && Number(product.price) <= priceRange);
+            setFilteredProducts(selectedItems);
+        }
+        else {
+            const selectedItems = products.filter(product => product.brand.toLowerCase() === brand.toLowerCase() && Number(product.price) <= priceRange);
+            setFilteredProducts(selectedItems);
+        }
+        setFilterStatus(true);
     };
 
     const productSearchFilter = searchTerm => {
-        setProductCategory("all");
-        setProductBrand("all");
-        setPriceRange(200000);
-        setFilterStatus(true);
         const selectedItems = products.filter(product => product.title.toLowerCase().includes(searchTerm.toLowerCase()));
         setFilteredProducts(selectedItems);
+        setFilterStatus(true);
     };
 
     const filterByPrice = price => {
-        setProductCategory("all");
-        setProductBrand("all");
         setPriceRange(price);
-        refObj.current.value = "";
+        if (productCategory !== "all" && productBrand !== "all") {
+            const selectedItems = products.filter(product => Number(product.price) <= price && product.category.toLowerCase() === productCategory && product.brand.toLowerCase() === productBrand);
+            setFilteredProducts(selectedItems);
+        }
+        else if (productCategory === "all" && productBrand !== "all") {
+            const selectedItems = products.filter(product => Number(product.price) <= price && product.brand.toLowerCase() === productBrand);
+            setFilteredProducts(selectedItems);
+        }
+
+        else if (productCategory !== "all" && productBrand === "all") {
+            const selectedItems = products.filter(product => Number(product.price) <= price && product.category.toLowerCase() === productCategory);
+            setFilteredProducts(selectedItems);
+        }
+
+        else {
+            const selectedItems = products.filter(product => Number(product.price) <= price);
+            setFilteredProducts(selectedItems);
+        }
         setFilterStatus(true);
-        const selectedItems = products.filter(product => Number(product.price) <= price);
-        setFilteredProducts(selectedItems);
+
     };
 
     const clearAllFilters = () => {
-        setFilterStatus(false);
         setProductCategory("all");
         setProductBrand("all");
         refObj.current.value = "";
         setPriceRange(200000);
+        setFilteredProducts([]);
+        setFilterStatus(false);
     };
 
     useEffect(() => {
@@ -147,7 +158,7 @@ function Products() {
                         <option value="all" disabled>Select Brand</option>
                         <option value="apple">Apple</option>
                         <option value="lenovo">Lenovo</option>
-                        <option value="HP">HP</option>
+                        <option value="hp">HP</option>
                         <option value="canon">Canon</option>
                         <option value="allen solly">Allen Solly</option>
                         <option value="puma">Puma</option>
@@ -232,7 +243,7 @@ function Products() {
                 }
 
                 {
-                    filterStatus && !filteredProducts.length && !isLoading && <p className="text-center mt-5 py-5">No products found.</p>
+                    filterStatus && !filteredProducts.length && !isLoading && <p className="text-center mt-5 py-5">No products found for this combination of filters.</p>
                 }
 
                 {

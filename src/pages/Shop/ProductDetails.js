@@ -6,6 +6,7 @@ import { db } from '../../firebase/config';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { ADD_TO_CART, CALCULATE_TOTAL_AMOUNT } from '../../redux/slices/cartSlice';
+import Swal from 'sweetalert2';
 
 const ProductDetails = () => {
     const { id } = useParams();
@@ -23,9 +24,26 @@ const ProductDetails = () => {
     const navigate = useNavigate();
 
     const deleteProduct = (id, name) => {
-        deleteDoc(doc(db, "products", id));
-        toast.info(`${name} deleted successfully.`);
-        isAdmin ? navigate("/products/list") : navigate("/products");
+        Swal.fire({
+            title: `Are you sure you want to delete ${name}?`,
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#dc3545',
+            cancelButtonColor: '#198754',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                deleteDoc(doc(db, "products", id)).then(() => {
+                    Swal.fire(
+                        'Deleted!',
+                        `${name} has been deleted.`,
+                        'success'
+                    );
+                    navigate("/products/list");
+                });
+            }
+        });
     };
 
     const addToCart = (product) => {
