@@ -29,6 +29,8 @@ const AddProducts = () => {
         e.preventDefault();
         console.log(title, desc, price, category, brand, productImg);
         const storageRef = ref(storage, `Images/${productImg.name}`);
+        const today = new Date();
+        const date = today.toDateString();
         setIsLoading(true);
         uploadBytes(storageRef, productImg).then(snapshot => {
             console.log("Uploaded", snapshot);
@@ -36,11 +38,12 @@ const AddProducts = () => {
                 addDoc(productsColl, {
                     title,
                     desc,
-                    price,
+                    price: Number(price),
                     category,
-                    brand,
+                    brand: brand.toLowerCase(),
                     imgUrl: url,
-                    createdBy: userID
+                    createdBy: userID,
+                    createdOn: date
                 }).then(docRef => {
                     updateDoc(docRef, {
                         id: docRef.id
@@ -138,7 +141,7 @@ const AddProducts = () => {
                                         placeholder='Enter the brand here'
                                         required
                                         value={brand}
-                                        onChange={event => setBrand(event.target.value)}
+                                        onChange={event => setBrand(event.target.value.toLowerCase())}
                                     />
                                 </div>
                                 <div className="mb-3">
